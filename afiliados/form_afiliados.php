@@ -17,6 +17,7 @@ if($VP_perfil=="Admin") {
 
 <!-- Main content -->
 <section class="content">
+
 <div class="row">
                         <!-- left column -->
                         <div class="col-md-9">

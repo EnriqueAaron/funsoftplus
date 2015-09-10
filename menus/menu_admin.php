@@ -30,7 +30,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="#" onclick="loadContentP('window_action','afiliados/form_afiliados.php','');">
+                                    <a href="#" onclick="loadContentP('window_action','afiliados/form_afiliados2.php','');">
                                         <i class="fa fa-angle-double-right"></i>    
                                         Registrar
                                     </a>

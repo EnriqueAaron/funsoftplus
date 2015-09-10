@@ -152,6 +152,48 @@ function loadContentP(idCapa, urlString, datosVar)
     ajax.send(datosVar); //Ejecuta la petción, la variable 'datosVar' son datos que se envian al servidor
 } 
 
+function loadContentR(idCapa, urlString, datosVar)
+{
+    var titulo,texto,accion,ajax;
+/*    titulo = document.getElementById('titulo').value;
+    texto = document.getElementById('texto').value;
+    accion = document.getElementById('accion').value;*/
+// Cargador puede ir aquí
+	element=document.getElementById(idCapa);
+	var url = document.location.toString();
+	//alert(url);
+	var posicion = url.lastIndexOf('/'); // posicion = 3
+	url=url.substr(0,posicion);
+	//alert(url);
+//posicion = mensaje.indexOf('b');     // posicion = -1
+//	url=document.location;
+	//posicion=url.indexOf('a');
+	//alert(url);
+	////////////// Para mostrar una imagen de cargar ////////////// Solo funciona en FF, (Por ahora) ////////////////
+	element.innerHTML = "<img src='"+url+"/img/ajax-loader3.gif' align='absmiddle' border='0'  width='16' height='16' />";
+    ajax=peticion;
+    ajax.open("POST",urlString,true);
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//Establece el valor de una etiqueta de las cabeceras de peticion 
+	
+    ajax.onreadystatechange=function() //Puntero a la función del manejador que se llama cuando cambia readystate
+    {
+		if (ajax.readyState==4) //Estado actual de la petición, si es igual a 4 esta completado
+		{
+		    if (ajax.status==200)//status codigo devuelto por el servidor. 
+		     {				 
+		     	 //element.innerHTML=ajax.responseText;
+				 var scripts=peticion.responseText.extractScript();  // Se extrae el codigo javascript
+		element.innerHTML = peticion.responseText.stripScript();  // se elimina el codigo javascript y se envia
+		scripts.evalScript();  // se ejecuta el codigo javascript extraido
+		     } else {
+				// si el status es diferente a 200, indica que hay un error
+			//	alert('Error AJAX Status !=200. Si visualiza este mensaje, por favor contacte con el Administrador.');
+				}
+		}
+    }
+    ajax.send(datosVar); //Ejecuta la petción, la variable 'datosVar' son datos que se envian al servidor
+} 
+
 
 function devuelveValor(ref) {
 	var obj=document.getElementById(ref);
